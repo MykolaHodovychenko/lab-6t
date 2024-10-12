@@ -86,7 +86,7 @@ public class SortingList extends Application {
      * Заповнюємо список даними вручну
      */
     private ObservableList<Student> populateList() {
-        Student student1 = new Student("Іван", "Іванов", 75);
+        Student student1 = new Student("Борис", "Іванов", 75);
         Student student2 = new Student("Петро", "Петренко", 92);
         Student student3 = new Student("Сергій", "Сергієнко", 61);
         Student student4 = new Student("Григорій", "Сковорода", 88);
@@ -117,10 +117,14 @@ public class SortingList extends Application {
 
         // Обробка натискання кнопки за допомогою об'єкта анонімного класу,
         // реалізує інтерфейс Comparable
+
+        final boolean[] order = {true};
+
         sortByNameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                students.sort(new NameSorter());
+                students.sort(new NameSorter(order[0]));
+                order[0] = !order[0];
             }
         });
 
